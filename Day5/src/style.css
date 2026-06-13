@@ -1,0 +1,60 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #000;
+  color: #fff;
+}
+#app{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1{
+  font-size: 6rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+.titleWord, .titleChars{
+  overflow: hidden;
+}
+p{
+  font-size: 2.3rem;
+  width: 80%;
+}
+
+.box{
+  width: 300px;
+  height: 300px;
+  background-color: red;
+}
+
+.imageGallery{
+  height: 30%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.imageGallery img{
+    height: 60%;
+  width: 30%;
+  object-fit: cover;
+}
+
+.imageShow{
+  height: 70%;
+  width: 60%;
+  background-color: red;
+}
+.imageShow img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
