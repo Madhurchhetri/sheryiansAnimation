@@ -29,7 +29,7 @@ const TextRevela = forwardRef(({
     useGSAP(()=>{
         splitRef.current = new SplitText(wrapperRef.current,{
             type:splitBy,
-            lineThresHold : 0.3,
+            lineThreshold : 0.3,
         })
         const elements = splitRef.current[splitBy];
 
@@ -38,7 +38,7 @@ const TextRevela = forwardRef(({
         });
 
         tlRef.current = gsap.timeline({
-            defaults : delay,
+            defaults : {delay},
             paused: true
         })
 

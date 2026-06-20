@@ -15,7 +15,7 @@ export default function Home() {
   //   triggerRef.current?.reverse()
   // }
   return (
-    <main className="bg-amber-50 text-black h-screen w-full flex items-center">
+    <main className="bg-amber-50 text-black h-screen w-full flex items-start">
     {/* <div 
     onPointerEnter={handleHoverEnter}
     onPointerLeave={handleHoverLeave}

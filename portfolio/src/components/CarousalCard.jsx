@@ -2,9 +2,10 @@
 import { useRef } from "react"
 import TextRevela from "./TextRevela"
 import gsap from "@/libs/gsap"
+import useViewTransition from "@/hooks/useViewTransition"
 
 
-const CARD_H = 280
+const CARD_H = 250
 const CARD_W = 200
 const SCALE = 1.35
 
@@ -21,8 +22,14 @@ const CarousalCard = ({projects , onHoverStart , onHoverEnd}) => {
         gsap.to(cardRef.current,{
             width : CARD_W * SCALE,
             height : CARD_H * SCALE,
-            duration:0.4,
+            duration:0.35,
             ease : "power3.out",
+        });
+
+        gsap.to(imageRef.current,{
+            scale:1,
+            duration:0.37,
+            ease : "power3.out"
         })
 
         numberRef.current?.play();
@@ -36,17 +43,30 @@ const CarousalCard = ({projects , onHoverStart , onHoverEnd}) => {
         gsap.to(cardRef.current,{
             width : CARD_W ,
             height : CARD_H ,
-            duration:0.1,
+            duration:0.17,
             ease : "power3.out",
+        });
+
+        gsap.to(imageRef.current,{
+            scale:1.6,
+            duration:0.19,
+            ease : "power3.out"
         })
 
         numberRef.current?.reverse();
         titleRef.current?.reverse();
         
     }
+
+    const {navigateTo} = useViewTransition();
+
+    const handleClick =()=>{
+        navigateTo(`/project/${projects.slug}`)
+    }
     
   return (
     <div ref={cardRef} 
+    onClick={handleClick}
     onMouseEnter={onEnter}
     onMouseLeave={onLeave}
     style={{
@@ -62,24 +82,25 @@ const CarousalCard = ({projects , onHoverStart , onHoverEnd}) => {
     {/* //title pannel */}
 
     <div
-    style={{bottom : "calc(100% + 1rem)"}}
-     className="titlePanel absolute left-0 pointer-events-none flex flex-col gap-[1rem] ">
-        <TextRevela ref={numberRef} trigger="manual" splitBy = "chars">
-            <h3>
+    style={{bottom : "calc(100% + 0.5rem)"}}
+     className="titlePanel absolute left-0 pointer-events-none flex flex-col gap-[0.2rem] ">
+        <TextRevela ref={numberRef} duration="0.25" trigger="manual" splitBy = "chars">
+            <h3 className="text-[1.2rem]">
                 {projects.number}
             </h3>
         </TextRevela>
-        <TextRevela ref={titleRef} trigger="manual" splitBy = "words">
-            <h3>
+        <TextRevela ref={titleRef} duration="0.25" trigger="manual" splitBy = "words">
+            <h3 className="text-[1.2rem]">
                 {projects.title}
             </h3>
         </TextRevela>
      </div>
 
-     <div ref={imageRef} className="imageDiv absolute h-full w-full overflow-hidden">
+     <div className="imageDiv absolute h-full w-full overflow-hidden">
         <img
+        ref={imageRef}
         style={{transformOrigin:"center", userSelect:"none"}} 
-        className="h-full w-full object-cover" 
+        className="h-full w-full object-cover scale-[1.6] " 
         src={projects.coverImage} alt={projects.title} />
      </div>
     
